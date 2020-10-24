@@ -2675,7 +2675,7 @@ p.ashade-intro {
 /* *Post Job* */
 .PostJobForm{
 	position: relative;
-	top: 31px;
+	top: 81px;
 	margin: auto;
     width: 62%;
     padding: 10px;
@@ -2849,7 +2849,6 @@ p.ashade-intro {
 	}
 	#detailblock{
 		position: relative;
-		left: 50px;
 		width: 100%;
 	}
 	@media screen and (min-width: 1400px) {
@@ -3020,5 +3019,64 @@ input:checked ~ .modal__overlay {
 	  font-size:25px;
   }
 
-  /* //signup Modal// */
-  
+#fixmarketimg{
+	width: 155px;
+	height:155px;
+}
+
+#budgetP{
+	font-size: 50px;
+}
+#imgdet{
+	height: 155px;
+}
+.blacktext{
+	color:black
+}
+/* /////BackGrounds//// */
+#homeBackGround{
+background: url(https://w.wallhaven.cc/full/5w/wallhaven-5w1ev8.jpg);
+background-size: cover;
+}
+/* //////////////// */
+/* ////Admin Signup */
+@media screen and (max-width: 800px) {
+    .signup-form-1 {
+        background-image: url('https://images.unsplash.com/photo-1487452066049-a710f7296400?ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80');
+        background-size: cover;
+        box-shadow: 0 5px 8px 0 rgba(255, 254, 254, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+        border: solid 1px;
+        max-width: 1000px;
+        margin: auto;
+        width: 95%;
+        padding: 10px;
+        margin-top: 200px;
+	}
+	#btnsub{
+		position: relative;
+    left: 141px;
+	}
+  }
+  @media screen and (min-width: 800px) {
+    .signup-form-1 {
+		background-image: url('https://images.unsplash.com/photo-1487452066049-a710f7296400?ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80');
+		opacity: 0.5;
+        background-size: cover;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+        border: solid 1px;
+        max-width: 1000px;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        margin-top: 200px;
+	}
+	#btnsub{
+		position: relative;
+    left: 220px;
+	}
+  }
+  #signupAdmin{
+	position: relative;
+    left: 80px;
+    margin-left: 4px;
+  }

@@ -1,14 +1,5 @@
 const initState={
-  user:{ 
-    FirstName : "malek",
-    LastName : "chebil",
-    Email : "malek@gmail.com",
-    Adresse: "tunis",
-    Gender : "Male",
-    Age : 28 ,
-    City : "Tunis",
-    Feald : "Designer"
-  }
+  user:{}
 }
 
 const reducers = {

@@ -35,6 +35,7 @@ class Login extends React.Component {
                         if(data.data.userData.type=="freelancer"){
                             this.props.ChangeUser('freelancer')
                             this.props.ChangePage("/")
+                            window.history.pushState({},null,"/")
                         }
                     }
     
@@ -55,14 +56,13 @@ class Login extends React.Component {
                         this.props.update(data.data.userData)
 
                         if(data.data.userData.type=="client"){
-                             this.props.ChangeUser('client')
-                            this.props.ChangePage("/")
+                        this.props.ChangeUser('client')
+                        this.props.ChangePage("/")
+                        window.history.pushState({},null,"/")
                         }
                     }
-
                 }).catch(err => console.log(err))
              }
-            
         };
 
         serviceprovider(){
@@ -109,6 +109,9 @@ class Login extends React.Component {
         </div>
         :null}
     </div>
+    <br/>
+    <br/>
+    <br/>
         <Footer/>
       </div>;
     }

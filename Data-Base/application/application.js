@@ -7,5 +7,5 @@ const Apply =(req,callback)=>{
 }
 
 module.exports={
-    
+  Apply
   }

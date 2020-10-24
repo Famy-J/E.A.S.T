@@ -1,19 +1,43 @@
 import React from "react"
 import Footer from "./footer.jsx"
+import axios from "axios"
+import {connect} from "react-redux"
 class JobDetails extends React.Component {
     constructor(props){
         super(props)
+        this.state={
+         PosterData:{},
+         apllication:false,
+        }
+        this.getposter=this.getposter.bind(this)
+    }
+    
+    getposter(prop){
+      axios({
+        url: '/api/users/name',
+        method: 'post',
+        data:{userid:prop.jobDetails.client_id}
+      }).then(data=>{
+        console.log(data.data)
+        this.setState({PosterData:data.data})
+      })
     }
 
+    componentDidMount(){
+      this.getposter(this.props)
+   if(this.props.user.type=="freelancer"){
+this.setState({apllication:true})
+   }
+    }
     render() {
       return <div id="detailblock">
           <div className="ashade-service-card__head">
 					<div id="detailjobimg">
-						<img src="img/avatars/testimonial01.png"/>
+						<img src={this.props.jobDetails.imgUrl?this.props.jobDetails.imgUrl:"img/avatars/testimonial01.png"} id="imgdet"/>
 					</div>
                     
       </div>
-      <cite id="detailcite"><a href="">The one who posted Name</a></cite>
+    <cite id="detailcite">{this.state.PosterData.FirstName}-{this.state.PosterData.LastName}</cite>
 <div className="ashade-page-title-wrap">
         <h1 className="ashade-page-title">
             <span>don't miss this opportunity</span>
@@ -22,8 +46,8 @@ class JobDetails extends React.Component {
     </div>
          <div className="ashade-col col-4" id="DetailJobTitle">
 				<h2>
-					<span>Field</span>
-						Job Title
+					<span>{this.props.jobDetails.fields}</span>
+						{this.props.jobDetails.jobTitle}
 				</h2>
 		</div>
 
@@ -35,15 +59,32 @@ class JobDetails extends React.Component {
 								 description
 							</h2>
 						</div>
-						<div className="ashade-col col-8">
+						<div className="ashade-col col-8" id="borderdetail">
 							<p className="is-dropcap">
-								This is an exmaple of dropcap. To create dropcap just simply add className 'is-dropcap' to your pargraph tag and you will get this typography effect. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar metus tellus, nec semper sem egestas hendrerit. Aenean fermentum arcu at. Nullam nec tincidunt metus. Fusce cursus, ante quis placerat commodo ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar metus tellus nec.
+							{this.props.jobDetails.jobDescription}
+							</p>
+						</div>
+					</div>
+				</section>
+        <br/>
+        <section className="ashade-section" id="DetailJobdescription">
+					<div className="ashade-row">
+						<div className="ashade-col col-4">
+							<h2>
+								<span>Job</span>
+								Budget TnD
+							</h2>
+						</div>
+						<div className="ashade-col col-8" id="borderdetail">
+              <br/>
+							<p id="budgetP">
+							{this.props.jobDetails.budget} TnD
 							</p>
 						</div>
 					</div>
 				</section>
                   <div className="ashade-contact-form__submit" id="detailsubmitbtn">  
-                  <div className="modal">
+                  {this.state.apllication?<div className="modal">
   <input id="modal__trigger" type="checkbox" />
   <label htmlFor="modal__trigger">Apply Now</label>
   <div className="modal__overlay">
@@ -55,12 +96,19 @@ class JobDetails extends React.Component {
      <button id='modalbutton'>Apply</button>
     </div>
   </div>
-</div>
+</div>:null}
+                 <br/> 
+                 <br/>
 <Footer/>
 				  </div>
          
           </div>
     }
   }
-
-export default JobDetails
+  const mapStateToProps = (state, ownProps) => {
+    return {
+      user:state.user
+    }
+  }
+ 
+export default connect(mapStateToProps)(JobDetails)

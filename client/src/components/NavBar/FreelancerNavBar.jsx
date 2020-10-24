@@ -49,7 +49,7 @@ if(e.target.id=="Home"){
                 <nav className="ashade-nav">
                     <ul className="main-menu">
                         <li className="menu-item-has-children">
-                        <a href="#" id="Home" onClick={this.handleclick}> Home</a>
+                        <a  id="Home" onClick={this.handleclick}> Home</a>
     
                          
                     </li>
