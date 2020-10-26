@@ -1,7 +1,7 @@
 const express = require('express')
 var router = express.Router();
 const FreeLancer=require("../Data-Base/freelancer/freelancer")
-
+const application=require("../Data-Base/application/application")
              /*Login FreeLancer*/
 
 router.post('/Login', function(req, res, next) {
@@ -21,7 +21,6 @@ console.log(req.body)
 router.post('/Signup', function(req, res, next) {
     
     if(Object.keys(req.body).length){
-        console.log(req.body)
  FreeLancer.SignupFreeLancer(req.body,(result,error)=>{
   if(error){
       if(error.code=="ER_DUP_ENTRY"){
@@ -34,6 +33,10 @@ router.post('/Signup', function(req, res, next) {
 }else{
     res.send({Signup:false})
 }
+});
+router.post('/Jobdetail/application', function(req, res, next) { 
+
+ application.Apply(req.body)
 });
  
 module.exports=router

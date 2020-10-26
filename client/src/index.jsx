@@ -14,7 +14,7 @@ import About from "./components/about.jsx"
 import ProfileSP from "./components/serviceprovider/serviceProviderprofil/serviceproviderprofil.jsx"
 import ClientProfile from "./components/client/clientprofile/clientprofil.jsx"
 import JobDetails from "./components/jobdetails.jsx"
-
+import EditClientProfile from "./components/client/clientprofile/editClientProfile.jsx"
 
               ////Redux///
 import {Provider} from "react-redux"
@@ -36,7 +36,7 @@ class App extends React.Component {
  this.setState({user})
      }
      
-    ChangePage(pathname,data){
+    ChangePage(pathname,data,profile){
      if(pathname==="/"){
       this.setState({page:<Home/>})
     }else if(pathname==="/About"){
@@ -44,21 +44,23 @@ class App extends React.Component {
     }else if(pathname==="/profile"){
       this.setState({page:<ClientProfile/>})
     }else if(pathname==="/Profile"){ //UpperCase P
-      this.setState({page:<ProfileSP/>})
+      this.setState({page:<ProfileSP jobDetails={data} selectedprofile={profile}/>})
     }else if(pathname==="/JobsPosted"){
-      this.setState({page:<JobsPosted/>})
+      this.setState({page:<JobsPosted ChangePage={this.ChangePage}/>})
     }else if(pathname==="/Jobsapplied"){
       this.setState({page:<Jobsapplied/>})
     }else if(pathname==="/PostJob"){
-      this.setState({page:<PostJob/>})
+      this.setState({page:<PostJob ChangePage={this.ChangePage}/>})
     }else if(pathname==="/Market"){
       this.setState({page:<Market ChangePage={this.ChangePage}/>})
     }else if(pathname==="/JobDetails"){
-      this.setState({page:<JobDetails jobDetails={data}/>})
+      this.setState({page:<JobDetails jobDetails={data} ChangePage={this.ChangePage}/>})
     }else if(pathname==="/Signup"){
-      this.setState({page:<Signup/>})
+      this.setState({page:<Signup ChangePage={this.ChangePage}/>})
     }else if(pathname==="/Login"){
       this.setState({page:<Login ChangeUser={this.ChangeUser} ChangePage={this.ChangePage}/>})
+    }else if(pathname==="/profileEdit"){
+      this.setState({page:<EditClientProfile/>})
     }
     }
 

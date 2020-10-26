@@ -1,8 +1,10 @@
 const express = require('express');
+const { useCallback } = require('react');
 const client = require('../Data-Base/client/client');
 var router = express.Router();
 const Client=require("../Data-Base/client/client")
 const jobs = require("../Data-Base/jobs/jobs");
+const application=require("../Data-Base/application/application")
              /*Login Client*/
 
 router.post('/Login', function(req, res, next) {
@@ -56,6 +58,32 @@ router.post("/postJob", (req, res) => {
       })
     }
   });
-  
+       /*Retrive Client Posted Job*/
+       router.post("/PostedJob", (req, res) => {
+console.log(req.body)
+        jobs.retriveClientPosts(req.body,(result)=>{
+res.send(result)
+        })
+        });
+
+         /*Check Appliers*/
+     router.post("/appliers", (req, res) => {
+console.log(req.body)
+application.RetriveAppliers(req.body,(result=>{
+res.send(result)
+}))
+        });
+
+        /*Update Client Profile*/
+router.post("/editProfile", (req, res) => {
+  Client.updateProfile(req.body, (result, error) => {
+    if (result) {
+      res.send(result)
+    } else {
+      res.send(error)
+    }
+  })
+});
+
 module.exports=router
 

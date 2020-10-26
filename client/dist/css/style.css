@@ -3039,3 +3039,55 @@ background: url(https://w.wallhaven.cc/full/5w/wallhaven-5w1ev8.jpg);
 background-size: cover;
 }
 /* //////////////// */
+        
+#profileimg{
+	position: relative;
+	top: -175px;
+	border: #000 solid 1px;
+}
+
+#applierslist{
+	font-size: 8px;
+	display: flex;
+	flex-direction: column;
+	border: #f8f8f8 solid;
+}
+
+.listitem{
+	margin: 5px;
+	border: #f8f8f8 solid;
+}
+.hirebutton{
+	font-size: 14px;
+    padding: 8px;
+	float:right;
+	border-radius: 30px;
+    color: black;
+	background: yellow;
+}
+
+#ApplierEmail{
+	float: left;
+	font-size:20px;
+	color:white;
+}
+
+#editprofilecontent{
+margin-top: 205px;
+}
+
+#imgedit{
+	border-radius: 200px;
+    border: white solid;
+    height: 200px;
+    width: 200px;
+    margin: 0%;
+	padding: 0%;
+	margin: auto;
+    padding: 10px;
+}
+#imputsforedit{
+	display: grid;
+    grid-template-columns: auto auto ;
+    width: 450px;
+}

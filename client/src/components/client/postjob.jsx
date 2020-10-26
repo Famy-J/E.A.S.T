@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "../footer.jsx";
 import axios from "axios";
 import { connect } from "react-redux";
+
 class PostJob extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class PostJob extends React.Component {
       fields: "",
       jobDescription: "",
       user: this.props.user,
+      budget:""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +28,7 @@ class PostJob extends React.Component {
       fields: this.state.fields,
       imgUrl: this.state.imgUrl,
       jobDescription: this.state.jobDescription,
+      budget:this.state.budget
     };
     axios
       .post("/api/clients/postJob", jobData)
@@ -34,9 +37,12 @@ class PostJob extends React.Component {
         this.setState({
           jobTitle: "",
           fields: "",
-          imgUrl: "",
+          imgUrl: "../img/services/thmb-nature.png",
           jobDescription: "",
-        });
+          
+        }); 
+        this.props.ChangePage("/Market")
+        window.history.pushState({},null,"/Market")
       })
       .catch((e) => {
         console.error(e);
@@ -130,10 +136,10 @@ class PostJob extends React.Component {
             </div>
             <div className="ashade-col col-4">
               <input
-                type="text"
-                id="ImgAddress"
-                name="imgUrl"
-                placeholder="Budget"
+                type="number"
+                id="budget"
+                name="budget"
+                placeholder="budget"
                 required
               />
             </div>

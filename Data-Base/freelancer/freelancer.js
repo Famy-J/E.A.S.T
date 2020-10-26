@@ -20,9 +20,12 @@ const loginFreeLancer= (req,callback)=>{
 
 const SignupFreeLancer= (req,callback)=>{
     if(req.Password){
+      console.log(req)
       var hash = bcrypt.hashSync(req.Password, salt);
       var query=`INSERT INTO Freelancers (FirstName,LastName,Email,password,Gender,Age,City,Adresse,Field) values ('${req.FirstName}','${req.LastName}','${req.Email}','${hash}','${req.Gender}',${req.Age},'${req.City}','${req.Adresse}','${req.Field}');`
-      connection.query(query, function (error, results, fields) {callback(results,error)});
+      connection.query(query, function (error, results, fields) {
+        console.log(results,error)
+        callback(results,error)});
     }
     ////dont forget this
 }

@@ -6,6 +6,9 @@ class Bio extends React.Component {
     super(props);
    
   }
+  componentWillUnmount(){
+
+  }
   render() {
     return (
       
@@ -14,7 +17,7 @@ class Bio extends React.Component {
             <div className="ashade-col col-6">
               <h2>
                 <span>Client Name</span>
-                {this.props.user.FirstName} { this.props.user.LastName }
+                {this.props.user.FirstName}-{ this.props.user.LastName }
                 
               </h2>
               <div className="ashade-col col-8">
@@ -22,6 +25,10 @@ class Bio extends React.Component {
 							<h6>
 								<span>Email</span>
 								{this.props.user.Email}
+							</h6>
+              <h6>
+								<span>Field</span>
+								{this.props.user.Field}
 							</h6>
               <h6>
 								<span>Address</span>
@@ -58,8 +65,8 @@ class Bio extends React.Component {
             </div>
             
             <div className="ashade-col col-6 align-bottom hide-on-tablet-port hide-on-phone">
-              <img
-                src=" https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg"
+              <img id="profileimg"
+                src="https://img.pngio.com/client-customer-manager-profile-service-support-user-icon-client-service-png-480_512.png"
                 // {this.props.profImage}
                  
                 alt="profileImage"
@@ -76,9 +83,36 @@ class Bio extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
+  if(!Object.keys(state.selectedprofile).length){
+    return {
+      user:state.user
+    }
+  }else{
+    return {
+      user:state.selectedprofile
+    }
+  }
+
+
+
+  
+}
+
+const mapDispatchToProps = (dispatch) => {
   return {
-    user:state.user
+    update: (value) => dispatch({
+      type: 'updatedata',
+      value
+    }),
+    selectedprofile: (value) => dispatch({
+      type: 'selectedprofile',
+      value
+    }),
+    unselect:(value) => dispatch({
+      type: 'unselect',
+      value
+    })
   }
 }
 
-export default connect(mapStateToProps)(Bio)
+export default connect(mapStateToProps,mapDispatchToProps)(Bio)

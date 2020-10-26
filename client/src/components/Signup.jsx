@@ -49,7 +49,7 @@ class Signup extends React.Component {
         >
           Client
         </button>
-       {this.state.client ? <ClientSignup /> : <FreelancerSignup />}
+       {this.state.client ? <ClientSignup ChangePage={this.props.ChangePage}/> : <FreelancerSignup ChangePage={this.props.ChangePage}/>}
       </div>
       <Footer />
      

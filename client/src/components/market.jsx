@@ -5,9 +5,29 @@ class Market extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            jobs:[]
+            jobs:[],
+            alljobs:[],
+            field:'all'
         }
         this.readmore=this.readmore.bind(this)
+        this.changeField=this.changeField.bind(this)
+    }
+ changeField(e){
+  var filter=[]
+  var field=e.target.value
+  if(e.target.value=="all"){
+    setTimeout(() => {
+      this.setState({field:field,jobs:this.state.alljobs})
+    }, 100);
+  }else{
+    var filter = this.state.alljobs.filter((elem)=>{
+      return  elem.fields==e.target.value
+      })
+      setTimeout(() => {
+  this.setState({field:field,jobs:filter})
+}, 100);
+  }
+
     }
     readmore(e){
         var jobdetail=null
@@ -17,16 +37,17 @@ class Market extends React.Component {
             }
         }
 this.props.ChangePage("/JobDetails",jobdetail)
+window.history.pushState({},null,"/Offers/JobDetails")
     }
 
-    
     componentDidMount() {
         axios({
           url: '/api/offers',
           method: 'get',
         }).then(data => {
           this.setState({
-            jobs: data.data
+            jobs: data.data,
+            alljobs:data.data
           });
         }).catch(error => {
           console.log(error)
@@ -55,11 +76,13 @@ this.props.ChangePage("/JobDetails",jobdetail)
                     {/* <!-- .ashade-row --> */}
 				</section>
 				<div className="ashade-col col-4">
-              <select name="fields" id="selectFiled" className="filteroffer">
+              <select name="fields" id="selectFiled" className="filteroffer" onChange={this.changeField}>
                 <option hidden name="choose" value="select Field">
-                  Select your Field
+                  Select a Field
                 </option>
-
+                <option  name="all" value="all">
+                  all
+                </option>
                 <option name="Design" value="Design">
                   Design
                 </option>
@@ -72,9 +95,6 @@ this.props.ChangePage("/JobDetails",jobdetail)
                 <option name="Djing" value="Djing">
                   Djing
                 </option>
-                <option name="Music" value="Music">
-                  Music
-                </option>
               </select>
             </div>
 				<section className="ashade-section">
@@ -83,26 +103,54 @@ this.props.ChangePage("/JobDetails",jobdetail)
 							<div className="ashade-service-card-grid">
 								{/* <!-- .ashade-service-card --> */}
                              {this.state.jobs.map((elem,index)=>{
-                                 return <div className="ashade-service-card" key={index}>
-                                 <div className="ashade-service-card__head">
-                                     <div className="ashade-service-card__image">
-                                         <img src={elem.imgUrl} id="fixmarketimg"/>
-                                     </div>
-                                     <div className="ashade-service-card__label">
-                                         <h4>
-                             <span>{elem.fields}</span>
-                                           {elem.jobTitle}
-                                         </h4>
-                                     </div>
-                                 </div>
-                                 {/* <!-- .ashade-service-card__head --> */}
-                                 <div className="ashade-service-card__content">
-                                     <p>Budget :{elem.budget}</p>
-                                     <div className="align-right">
-                                         <a href="#" id={elem.id} onClick={this.readmore}>Read More</a>
-                                     </div>
-                                 </div>
-                                 </div>
+                                 console.log(this.state.field=='all')
+                               if(this.state.field=='all'){
+                               
+                                return <div className="ashade-service-card" key={index}>
+                                <div className="ashade-service-card__head">
+                                    <div className="ashade-service-card__image">
+                                        <img src={elem.imgUrl} id="fixmarketimg"/>
+                                    </div>
+                                    <div className="ashade-service-card__label">
+                                        <h4>
+                            <span>{elem.fields}</span>
+                                          {elem.jobTitle}
+                                        </h4>
+                                    </div>
+                                </div>
+                                {/* <!-- .ashade-service-card__head --> */}
+                                <div className="ashade-service-card__content">
+                                    <p>Budget :{elem.budget}</p>
+                                    <div className="align-right">
+                                        <a href="#" id={elem.id} onClick={this.readmore}>Read More</a>
+                                    </div>
+                                </div>
+                                </div>
+                               }else { if(elem.fields==this.state.field){
+                                return <div className="ashade-service-card" key={index}>
+                                <div className="ashade-service-card__head">
+                                    <div className="ashade-service-card__image">
+                                        <img src={elem.imgUrl} id="fixmarketimg"/>
+                                    </div>
+                                    <div className="ashade-service-card__label">
+                                        <h4>
+                            <span>{elem.fields}</span>
+                                          {elem.jobTitle}
+                                        </h4>
+                                    </div>
+                                </div>
+                                {/* <!-- .ashade-service-card__head --> */}
+                                <div className="ashade-service-card__content">
+                                    <p>Budget :{elem.budget}</p>
+                                    <div className="align-right">
+                                        <a href="#" id={elem.id} onClick={this.readmore}>Read More</a>
+                                    </div>
+                                </div>
+                                </div>
+                               }
+                                 
+                               }
+                                 
                              })}
                                 
                                 	
