@@ -1,5 +1,6 @@
 const initState={
-  user:{}
+  user:{},
+  selectedprofile:{}
 }
 
 const reducers = {
@@ -9,6 +10,19 @@ const reducers = {
             user:action.value
         }
     },
+    selectedprofile:(state,action)=>{
+      return {
+        ...state,
+        selectedprofile:action.value
+      }
+    },
+    unselect:(state,action)=>{
+      return {
+        ...state,
+        selectedprofile:{},
+        user:action.value
+      }
+    }
 
   };
 

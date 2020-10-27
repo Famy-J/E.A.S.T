@@ -1,10 +1,38 @@
 import React from "react"
 import Footer from "../footer.jsx"
+import {connect} from "react-redux"
+import axios from "axios"
 class JobsPosted extends React.Component {
     constructor(props){
         super(props)
+        this.state={
+          postedJobs:[]
+        }
+        this.ReadMore=this.ReadMore.bind(this)
     }
+  ReadMore(e){
+    var jobdetail=null
+    for(var i=0;i<this.state.postedJobs.length;i++){
+        if(this.state.postedJobs[i].id==e.target.id){
+            jobdetail=this.state.postedJobs[i]
+        }
+    }
+    this.props.ChangePage("/JobDetails",jobdetail)
+    window.history.pushState({},null,"/PostedJobs/JobDetails")
+  }
+    
 
+componentDidMount(){
+  
+  axios({
+    url: '/api/clients/PostedJob',
+    method: 'post',
+    data:{userid:this.props.user.id}
+  }).then(data=>{
+    console.log(data.data)
+    this.setState({postedJobs:data.data})
+  })
+}
     render() {
       return <div>
       {/* <div className="ashade-page-title-wrap">
@@ -31,26 +59,28 @@ class JobsPosted extends React.Component {
                             <div className="ashade-col col-12">
                   <div className="ashade-service-card-grid">
                                           {/* <!-- .ashade-service-card --> */}
-                                    <div className="ashade-service-card">
-                      <div className="ashade-service-card__head">
-                        <div className="ashade-service-card__image">
-                          <img src="img/services/thmb-nature.png" />
-                        </div>
-                        <div className="ashade-service-card__label">
-                          <h4>
-                            <span>Photos of wild nature</span>
-                            Service Title
-                          </h4>
-                        </div>
-                                        </div>
-                                        {/* <!-- .ashade-service-card__head --> */}
-                      <div className="ashade-service-card__content">
-                        <p>Job description Here</p>
-                        <div className="align-right">
-                          <a href="gallery-masonry-4columns.html" className="ashade-learn-more">Read More</a>
-                        </div>
-                      </div>
-                    </div>
+                                  {this.state.postedJobs.map((elem,index)=>{
+                                    return   <div className="ashade-service-card" key={index}>
+                                    <div className="ashade-service-card__head">
+                                      <div className="ashade-service-card__image">
+                                        <img src={elem.imgUrl}/>
+                                      </div>
+                                      <div className="ashade-service-card__label">
+                                        <h4>
+                                  <span>{elem.fields}</span>
+                                          {elem.jobTitle}
+                                        </h4>
+                                      </div>
+                                                      </div>
+                                                      {/* <!-- .ashade-service-card__head --> */}
+                                    <div className="ashade-service-card__content">
+                                      <p>Budget :{elem.budget}TND</p>
+                                      <div className="align-right">
+                                        <a href="#" className="ashade-learn-more" id={elem.id} onClick={this.ReadMore}>Read More</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  })}
                                 </div>
                             </div>         
                         </div>                    
@@ -70,5 +100,9 @@ class JobsPosted extends React.Component {
           </div>
     }
   }
-
-export default JobsPosted
+  const mapStateToProps = (state, ownProps) => {
+    return {
+      user:state.user
+    }
+  }
+export default connect(mapStateToProps)(JobsPosted)

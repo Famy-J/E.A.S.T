@@ -2698,10 +2698,9 @@ p.ashade-intro {
 }
 /* --- Signup --- */
   
-@media screen and (max-width: 800px) {
+  @media screen and (max-width: 800px) {
 	.signup-form-1 {
-		background-image: url('https://www.chromethemer.com/google-chrome/backgrounds/download/random-hd-background-for-google-chrome-ct5624.jpg');
-		background-size: cover;
+		background: #282726;
 		box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 		border: solid 1px;
 		max-width: 1000px;
@@ -2711,39 +2710,21 @@ p.ashade-intro {
 		margin-top: 200px;
 		
 	}
-	#checkid{
-		margin-left: -315px;
-		margin-bottom: 30px;
-	}
-	#checkid1 {
-		
-		margin-top: -65px;
-		margin-left: 24px;
-	}
   }
   @media screen and (min-width: 800px) {
 	.signup-form-1 {
-		background-image: url('https://www.chromethemer.com/google-chrome/backgrounds/download/random-hd-background-for-google-chrome-ct5624.jpg');
-		background-size: cover;
+		background: #282726;
 		box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 		border: solid 1px;
 		max-width: 1000px;
 		margin: auto;
-		width: 50%;
+		width: 40%;
 		padding: 10px;
 		margin-top: 200px;
 	}
-	#checkid{
-		margin-left: -315px;
-		margin-bottom: 30px;
-	}
-	#checkid1 {
-		
-		margin-top: -65px;
-		margin-left: 24px;
-	}
 
   }
+
 
 #btn {
 	position: relative;
@@ -2990,7 +2971,6 @@ p.ashade-intro {
 
 .modal input:focus ~ label {
   transform: scale(0.97);
-
 }
 
 #modal__trigger{
@@ -3059,3 +3039,122 @@ background: url(https://w.wallhaven.cc/full/5w/wallhaven-5w1ev8.jpg);
 background-size: cover;
 }
 /* //////////////// */
+        
+#profileimg{
+	position: relative;
+	top: -175px;
+	border: #000 solid 1px;
+}
+
+#applierslist{
+	font-size: 8px;
+	display: flex;
+	flex-direction: column;
+	border: #f8f8f8 solid;
+}
+
+.listitem{
+	margin: 5px;
+	border: #f8f8f8 solid;
+}
+.hirebutton{
+	font-size: 14px;
+    padding: 8px;
+	float:right;
+	border-radius: 30px;
+    color: black;
+	background: yellow;
+}
+
+#ApplierEmail{
+	float: left;
+	font-size:20px;
+	color:white;
+}
+
+#editprofilecontent{
+margin-top: 205px;
+}
+
+#imgedit{
+	border-radius: 200px;
+    border: white solid;
+    height: 200px;
+    width: 200px;
+    margin: 0%;
+	padding: 0%;
+	margin: auto;
+    padding: 10px;
+}
+#imputsforedit{
+	display: grid;
+    grid-template-columns: auto auto ;
+    width: 450px;
+}
+   /*// SERVICES //*/
+  
+
+.image-wrapper{
+	display: block;
+	width: 280px;
+	height: 250px;
+	border: purple;
+	border-style: solid;
+	border-radius: 4%;
+}
+.list-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+
+}
+.categories-list{
+	display: block;
+	text-align: center;
+	margin-top: 100px;
+	margin-left: 70px;
+	
+}
+
+   
+.popup-box {
+	position: fixed;
+	background: #00000050;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+  }
+   
+  .box {
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	height: auto;
+	max-height: 70vh;
+	margin-top: calc(100vh - 85vh - 20px);
+	background: #fff;
+	border-radius: 4px;
+	padding: 20px;
+	border: 1px solid #999;
+	overflow: auto;
+  }
+   
+  .close-icon {
+	content: 'x';
+	cursor: pointer;
+	position: fixed;
+	right: calc(15% - 30px);
+	top: calc(100vh - 85vh - 33px);
+	background: #ededed;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	line-height: 20px;
+	text-align: center;
+	border: 1px solid #999;
+	font-size: 20px;
+  }
+  .text-hover :hover .popup-box {
+	display: inline;
+  }

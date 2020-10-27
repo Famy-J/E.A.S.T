@@ -3,7 +3,7 @@ const {connection}=require("./Data-Base/database")
 const PORT = 3000
 const app = express()
 const clientRouter=require("./ServerRoutes/Client")
-const ArtistRouter=require("./ServerRoutes/Artist")
+const FreelancerRouter=require("./ServerRoutes/FreeLancer")
 const offersRouter=require('./ServerRoutes/offers')
 const UsersRouter=require('./ServerRoutes/users')
 app.use(express.json()); 
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
           /*Routes*/
 
 app.use('/api/clients', clientRouter);
-app.use('/api/artists', ArtistRouter);
+app.use('/api/freeLancers', FreelancerRouter);
 app.use('/api/offers', offersRouter);
 app.use('/api/users',UsersRouter);
         /*Server Connection*/

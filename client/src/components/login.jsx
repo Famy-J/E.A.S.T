@@ -8,17 +8,17 @@ class Login extends React.Component {
         this.state={
             Email:"",
             Password:"",
-            Artist:true,
+            serviceprovider:true,
             client:false,
-            Registration:"Login as Aritst"
+            Registration:"Login as a service-provider"
         }
-  this.Artist=this.Artist.bind(this)
+  this.serviceprovider=this.serviceprovider.bind(this)
   this.client=this.client.bind(this)
   this.Login=this.Login.bind(this)
          }
 
          Login() {
-             if(this.state.Artist){
+             if(this.state.serviceprovider){
                 axios({
                     url: '/api/freeLancers/Login',
                     method: 'post',
@@ -65,20 +65,20 @@ class Login extends React.Component {
              }
         };
 
-        Artist(){
-         this.setState({client:false,Artist:true,Registration:"Login as Artist",Email:"",Password:""})
+        serviceprovider(){
+         this.setState({client:false,serviceprovider:true,Registration:"Login as a service-provider",Email:"",Password:""})
         }
 
         client(){
-         this.setState({client:true,Artist:false,Registration:"Login as a client",Email:"",Password:""})
+         this.setState({client:true,serviceprovider:false,Registration:"Login as a client",Email:"",Password:""})
         }
     render() {
       return <div>
           <div className="col-md-6 signup-form-1">
         
         <h3 id="h3login">{this.state.Registration}</h3>
-        <button className="SwitchConsumer" id="switchbtn1" onClick={this.Artist}>Artist</button> <button className="SwitchConsumer" id="switchbtn2" onClick={this.client}>Client</button>
-        {this.state.Artist?
+        <button className="SwitchConsumer" id="switchbtn1" onClick={this.serviceprovider}>Serviceprovider</button> <button className="SwitchConsumer" id="switchbtn2" onClick={this.client}>Client</button>
+        {this.state.serviceprovider?
         <div>
         <div className="form-group">
             <input type="text" className="form-control" placeholder="Your Email " onChange={event=>{this.setState({Email:event.target.value})}}/>

@@ -11,8 +11,10 @@ class ClientProfile extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          user: []
+          user: [],
+          
         }
+        
     }
     componentDidMount(){
       axios.get("/api/clients/clientInfo")

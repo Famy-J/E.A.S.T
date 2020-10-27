@@ -1,32 +1,32 @@
 import React from "react";
 import Footer from "./footer.jsx";
 import ClientSignup from "../components/client/clientSignup.jsx";
-import ArtistSignup from "../components/Artist/artistSignup.jsx";
+import FreelancerSignup from "../components/serviceprovider/freelancerSignup.jsx";
 import { connect } from "react-redux";
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       client: true,
-      Artist: false,
+      serviceprovider: false,
       Registration: "Register as a client",
     };
-    this.Artist = this.Artist.bind(this);
+    this.serviceprovider = this.serviceprovider.bind(this);
     this.client = this.client.bind(this);
   }
-  Artist() {
+  serviceprovider() {
     this.setState({
       client: false,
-      Artist: true,
-      Registration: "Register as Artist",
+      serviceprovider: true,
+      Registration: "Register as a Freelancer",
     });
   }
 
   client() {
     this.setState({
       client: true,
-      Artist: false,
-      Registration: "Register as client",
+      serviceprovider: false,
+      Registration: "Register as a client",
     });
   }
   
@@ -38,9 +38,9 @@ class Signup extends React.Component {
         <button
           className="SwitchConsumer"
           id="switchbtn1"
-          onClick={this.Artist}
+          onClick={this.serviceprovider}
         >
-          Artist
+          FreeLancer
         </button>{" "}
         <button
           className="SwitchConsumer"
@@ -49,7 +49,7 @@ class Signup extends React.Component {
         >
           Client
         </button>
-       {this.state.client ? <ClientSignup /> : <ArtistSignup />}
+       {this.state.client ? <ClientSignup ChangePage={this.props.ChangePage}/> : <FreelancerSignup ChangePage={this.props.ChangePage}/>}
       </div>
       <Footer />
      

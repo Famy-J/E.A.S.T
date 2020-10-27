@@ -28,7 +28,26 @@ const SignupClient= (req,callback)=>{
 
 }
 
+const updateProfile = async (req, callback) => {
+  try {
+    var query = `UPDATE IGNORE Clients SET  
+    FirstName = '${req.FirstName}', 
+    LastName = '${req.LastName}', 
+    Adresse = '${req.Adresse}', 
+    Password = '${req.Password}', 
+    imgUrl = '${req.ImgUrl}' 
+    WHERE id = '${req.id}' `;
+     connection.query(query, (error, results, fields) => {
+      callback(results, error)
+    });
+  } catch (err) {
+    if (err) {
+      throw err
+    }
+  }
+}
   module.exports={
     loginClient,
     SignupClient,
+    updateProfile
   }
