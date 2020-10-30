@@ -6,7 +6,7 @@ class JobOffersProf extends React.Component {
   render() {
     return (
       <section className="ashade-section">
-        <div className="ashade-row">
+        {/* <div className="ashade-row">
           <div className="ashade-col col-12 align-center">
             <section className="ashade-section">       		
 					<div className="ashade-row">
@@ -26,7 +26,7 @@ class JobOffersProf extends React.Component {
               </div>
               
             
-          </div>
+          </div> */}
        
       </section>
     );

@@ -14,16 +14,7 @@ class ProfileStats extends React.Component {
   render() {
     return (
       <section className="ashade-section">
-        <div className="ashade-row ashade-keep-on-tablet">
-          <div className="ashade-col col-3">
-            <div className="ashade-counter-item" data-delay="3000">
-              <span className="ashade-counter-label">jobs Posted</span>
-              <span className="ashade-counter-value">25</span>
-            </div>
-          </div>
-          
-          
-        </div>
+       
         
       </section>
     );

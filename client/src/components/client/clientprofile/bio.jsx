@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {connect} from "react-redux"
+
 class Bio extends React.Component {
   constructor(props) {
     super(props);
@@ -32,41 +33,37 @@ handleChange(e) {
     return (
       
         <section className="ashade-section">
-          <div className="ashade-row ashade-row-fullheight exclude-header" style={{position: "relative", top: "80px"}}>
-            <div className="ashade-col col-6">
+          
+   
+          <div className="ashade-row ashade-row-fullheight exclude-header" style={{position: "relative", top: "80px",display:"grid"}} id="serviceProfile">
+          <img className="avatar" src={this.props.user.imgsrc} alt="Joshuasm32" /> 
+            <div className="ashade-col col-6" id="profileInfoCard">
               <h2>
-                <span>Client Name</span>
+                <span className="profileinfo">Client Name</span>
                 {this.props.user.FirstName}-{ this.props.user.LastName }
-                
-              </h2>
-              <div className="ashade-col col-8">
-							
-							<h6>
-								<span>Email</span>
+                <h6>
+								<span className="profileinfo">Email</span>
 								{this.props.user.Email}
 							</h6>
               <h6>
-								<span>Address</span>
+								<span className="profileinfo">Address</span>
 								{this.props.user.Adresse}
 							</h6>
               <h6>
-								<span>Gender</span>
+								<span className="profileinfo">Gender</span>
 								{this.props.user.Gender}
 							</h6>
              
               <h6>
-								<span>Age</span>
+								<span className="profileinfo">Age</span>
 								{this.props.user.Age}
 							</h6>
 						  <h6>
-								<span>City</span>
+								<span className="profileinfo">City</span>
 								{this.props.user.City}
 							</h6>
               
-							
-						
-						</div>
-
+              </h2>
 							<div className="modal">
   <input id="modal__trigger" type="checkbox" />
   <label htmlFor="modal__trigger">Edit Profile</label>
@@ -80,39 +77,46 @@ handleChange(e) {
                             <img id="imgedit" src={this.state.selectedFile.length ? this.state.selectedFile : this.state.defaultSrc } />
                         <input className="file" type="file" onChange={this.onFileChange} />
                         <div className="row mt-3" id="inputContainer" onChange={this.handleChange}>
-                                    <div className="col-md-12" id="imputsforedit"><input type="text" name="firstName" className="form-control" placeholder="Edit your First Name" />
-                                  <input type="text" name="lastName" className="form-control" placeholder="Edit your Last Name" />
+                                    <div className="col-md-12" id="imputsforedit"><input type="text" name="firstName" className="form-control" placeholder="Edit your First Name" value={this.props.user.FirstName}/>
+                                  <input type="text" name="lastName" className="form-control" placeholder="Edit your Last Name" value={ this.props.user.LastName }/>
                                    <input type="text" name="password" className="form-control" placeholder="Edit your Password" />
                                     <input type="text" name="phoneNumber" className="form-control" placeholder="Edit your Phone Number" />
-                                 <input type="text" name="adress" className="form-control" placeholder="Edit your Adress" /></div>
+                                 <input type="text" name="adress" className="form-control" placeholder="Edit your Adress" value={this.props.user.Email}/></div>
                                 </div>
+                                 <div className="ashade-col col-6 align-bottom hide-on-tablet-port hide-on-phone">
+                 
     </div>
   </div>
 </div>
-
-              {/* <div className="align-right ashade-signature-wrap">
-                <img
-                  src="img/general/signature.png"
-                  alt="Signature"
-                  width="200"
-                  height="116"
-                />
-              </div> */}
-            </div>
-            
-            <div className="ashade-col col-6 align-bottom hide-on-tablet-port hide-on-phone">
-              <img id="profileimg"
-                src=" https://img.pngio.com/client-customer-manager-profile-service-support-user-icon-client-service-png-480_512.png"
-                // {this.props.profImage}
-                 
-                alt="profileImage"
-                width="1240"
-                height="1500"
-              />
+<div className="ashade-row ashade-keep-on-tablet">
+          <div className="ashade-col col-3">
+            <div className="ashade-counter-item maginskills" data-delay="3000">
+              <span className="ashade-counter-label">jobs Posted</span>
+              <span className="ashade-counter-value">25</span>
             </div>
           </div>
-          {/* <!-- .ashade-row --> */}
-         
+          <div className="ashade-col col-3">
+            <div className="ashade-counter-item maginskills"  data-delay="3000">
+              <span className="ashade-counter-label">jobs Posted</span>
+              <span className="ashade-counter-value">25</span>
+            </div>
+          </div>
+          <div className="ashade-col col-3">
+            <div className="ashade-counter-item maginskills" data-delay="3000">
+              <span className="ashade-counter-label">jobs Posted</span>
+              <span className="ashade-counter-value">25</span>
+            </div>
+          </div>
+          <div className="ashade-col col-3">
+            <div className="ashade-counter-item maginskills" data-delay="3000">
+              <span className="ashade-counter-label">jobs Posted</span>
+              <span className="ashade-counter-value">25</span>
+            </div>
+          </div>
+               </div>
+             </div>
+            </div>
+          </div>
         </section>
       
     );

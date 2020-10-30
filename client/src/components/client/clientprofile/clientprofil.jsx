@@ -5,7 +5,7 @@ import Bio from "./bio.jsx";
 import JobOffersProf from "./jobOffers.jsx";
 import ProfileStats from "./profIStats.jsx";
 import axios from "axios";
-
+import Footer from "../../footer.jsx"
 import {connect} from "react-redux"
 class ClientProfile extends React.Component {
     constructor(props){
@@ -38,6 +38,7 @@ class ClientProfile extends React.Component {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
     }
   }

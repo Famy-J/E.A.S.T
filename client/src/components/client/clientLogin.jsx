@@ -1,8 +1,7 @@
 import React from "react"
-import Footer from "./footer.jsx"
 import axios from "axios"
 import {connect} from "react-redux"
-class Login extends React.Component {
+class ClientLogin extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -18,29 +17,6 @@ class Login extends React.Component {
          }
 
          Login() {
-             if(this.state.serviceprovider){
-                axios({
-                    url: '/api/freeLancers/Login',
-                    method: 'post',
-                    data: {
-                        Email: this.state.Email,
-                        Password: this.state.Password
-                    }
-                }).then(data => {
-                    console.log(data.data)
-                    if(!data.data.Login){
-                        alert("Check Again")
-                    }else{
-                        this.props.update(data.data.userData)
-                        if(data.data.userData.type=="freelancer"){
-                            this.props.ChangeUser('freelancer')
-                            this.props.ChangePage("/")
-                            window.history.pushState({},null,"/")
-                        }
-                    }
-    
-                }).catch(err => console.log(err))
-             }else{
                 axios({
                     url: '/api/clients/Login',
                     method: 'post',
@@ -62,7 +38,6 @@ class Login extends React.Component {
                         }
                     }
                 }).catch(err => console.log(err))
-             }
              event.preventDefault();
         };
 
@@ -87,10 +62,14 @@ class Login extends React.Component {
     <div id="form-login-username" className="form-group">
     <label for="Email" className="float-label logintextcolor" >Email</label>
       <input id="username" className="form-control" name="Email" type="text" size="18" alt="login" onChange={event=>{this.setState({Email:event.target.value})}} required />
-      <label for="password" className="float-label logintextcolor" >Password</label>
+      <span className="form-highlight"></span>
+      <span className="form-bar"></span>
+      <label for="username" className="float-label logintextcolor" >Password</label>
     </div>
     <div id="form-login-password" className="form-group">
       <input id="passwd" className="form-control" name="password" type="password" size="18" alt="password" onChange={event=>{this.setState({Password:event.target.value})}} required/>
+      <span className="form-highlight"></span>
+      <span className="form-bar"></span>
     </div>
     <div id="form-login-remember" className="form-group">
     </div>
@@ -119,4 +98,4 @@ class Login extends React.Component {
     }
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default connect(mapStateToProps,mapDispatchToProps)(ClientLogin)
